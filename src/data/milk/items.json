@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Whole Milk",
+        "price": 2.50,
+        "imgUrl": "/images/wholemilk.webp"
+    },
+    {
+        "id": 2,
+        "name": "Low Fat Milk",
+        "price": 2.50,
+        "imgUrl": "/images/lowfatmilk.webp"
+    },
+    {
+        "id": 3,
+        "name": "Fat Free Milk",
+        "price": 2.50,
+        "imgUrl": "/images/fatfreemilk.webp"
+    },
+    {
+        "id": 4,
+        "name": "Chocolate Milk",
+        "price": 2.50,
+        "imgUrl": "/images/chocolatemilk.webp"
+    }
+]

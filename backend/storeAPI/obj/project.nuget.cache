@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "Hh8TZn2c4AWzgsZ+/mD7bEI/6ZFhy2+dyjFucvFH9xWcYu8syq6NIGD36VLMku2d9pvi2mUIq/UIE7ezZfMYpA==",
+  "success": true,
+  "projectFilePath": "/Users/eduardogamez/Desktop/Shopping-Cart/backend/storeAPI/storeAPI.csproj",
+  "expectedPackageFiles": [
+    "/Users/eduardogamez/.nuget/packages/microsoft.aspnetcore.openapi/8.0.1/microsoft.aspnetcore.openapi.8.0.1.nupkg.sha512",
+    "/Users/eduardogamez/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/eduardogamez/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/eduardogamez/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/Users/eduardogamez/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/Users/eduardogamez/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/Users/eduardogamez/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

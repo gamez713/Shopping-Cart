@@ -1,22 +1,42 @@
-import { Col, Row } from "react-bootstrap" 
-import storeItems from "../data/milk/items.json" // Importing items data from a JSON file
+import { useEffect, useState } from "react"         // React hooks for managing state and side effects
+import { Col, Row } from "react-bootstrap"          // Bootstrap grid components for layout
 import { StoreItem } from "../components/StoreItem" // Importing the StoreItem component to display each item
 
-export function Store() {
-    return (
-        <>
-            <h1>Store</h1>
+// Structure of product item from API
+type Product = {
+    id: number;
+    name: string;
+    price: number;
+    imgUrl: string
+}
 
-            {/* Bootstrap Row to layout items, responsive to different screen sizes */}
-            <Row xs={1} md={2} lg={3} className="g-3">
-                {/* Loop through storeItems array and render a StoreItem for each */}
-                {storeItems.map(item => (
-                    <Col key={item.id}>
-                        {/* Spread the item properties and pass them as props to StoreItem */}
-                        <StoreItem {...item} />
-                    </Col>
-                ))}
-            </Row>
-        </>
-    ) 
+export function Store() {
+  // Local state to hold the fetched product list
+  const [storeItems, setStoreItems] = useState<Product[]>([])
+
+  // Fetch product data from the backend when the component mounts
+  useEffect(() => {
+    fetch("http://localhost:5135/api/products")
+      // Parse JSON response
+      .then(res => res.json())
+      // Store products in local state
+      .then(data => setStoreItems(data))
+      .catch(err => console.error("Failed to fetch products:", err))
+  }, [])
+
+  return (
+    <>
+      <h1>Store</h1>
+
+      {/* Layout for products: 1 column on xs, 2 on md, 3 on lg screens */}
+      <Row xs={1} md={2} lg={3} className="g-3">
+        {/* Render each product using the StoreItem component */}
+        {storeItems.map(item => (
+          <Col key={item.id}>
+            <StoreItem {...item} />  {/* Spread product props into StoreItem */}
+          </Col>
+        ))}
+      </Row>
+    </>
+  )
 }

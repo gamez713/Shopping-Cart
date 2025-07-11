@@ -1,6 +1,5 @@
 import { Stack, Button } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import storeItems from "../data/milk/items.json";
 
 // Define properties for each cart item
 type CartItemProps = {
@@ -10,18 +9,20 @@ type CartItemProps = {
 
 // Component for displaying each item in the shopping cart
 export function CartItem({ id, quantity }: CartItemProps) {
-    const { removeFromCart } = useShoppingCart();
-    
-    // Find the item in the store data by its id
-    const item = storeItems.find(i => i.id === id);
-    
-    // Return null if the item does not exist (safety check)
+     // Access context for cart and product data
+    const { removeFromCart, products } = useShoppingCart();
+
+    // Find the product that matches the cart item ID
+    const item = products.find(i => i.id === id);
+
+    // If product is not found (edge case), return nothing
     if (item == null) return null;
 
     return (
-        // Stack for flexible horizontal alignment of cart item details
+        // Stack layout with spacing for cart item row
         <Stack direction="horizontal" gap={2} className="d-flex align-items-center p-2 border-bottom">
             
+            {/* Product image */}
             <img 
                 src={item.imgUrl}
                 style={{
@@ -35,10 +36,8 @@ export function CartItem({ id, quantity }: CartItemProps) {
                 alt={item.name}
             />
             
-            {/* Display item details */}
+            {/* Product info section */}
             <div className="me-auto">
-
-                {/* Display item name and quantity (if > 1) */}
                 <div className="d-flex align-items-center">
                     {item.name}
                     {quantity > 1 && (
@@ -47,19 +46,19 @@ export function CartItem({ id, quantity }: CartItemProps) {
                         </span>
                     )}
                 </div>
-                
-                {/* Display unit price of the item */}
+
+                {/* Unit price */}
                 <div className="text-muted" style={{ fontSize: ".9rem" }}>
                     ${item.price.toFixed(2)} each
                 </div>
-                
-                {/* Display total price for the quantity of this item */}
+
+                {/* Total price for this item */}
                 <div className="text-muted mt-1" style={{ fontSize: ".9rem", fontWeight: "bold" }}>
                     Total: ${(item.price * quantity).toFixed(2)}
                 </div>
             </div>
             
-            {/* Button to remove item from cart */}
+            {/* Remove from cart button */}
             <Button 
                 variant="outline-danger" 
                 size="sm" 

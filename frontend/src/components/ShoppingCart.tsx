@@ -1,7 +1,6 @@
 import { Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext"; // Custom hook to access shopping cart context
 import { CartItem } from "./CartItem";
-import storeItems from "../data/milk/items.json";
 
 // Define the props type for the ShoppingCart component
 type ShoppingCartProps = {

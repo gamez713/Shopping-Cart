@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { ShoppingCart } from "../components/ShoppingCart";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
@@ -13,6 +13,13 @@ type CartItem = {
     quantity: number;  // Quantity of the item in the cart
 };
 
+type Product = {
+    id: number
+    name: string
+    price: number
+    imgUrl: string
+}
+
 // Define the context type
 type ShoppingCartContextType = {
     openCart: () => void
@@ -23,6 +30,7 @@ type ShoppingCartContextType = {
     removeFromCart: (id: number) => void;
     cartQuantity: number
     cartItems: CartItem[]
+    products: Product[]
 };
 
 // Create the context with an initial value of undefined
@@ -40,6 +48,16 @@ export function useShoppingCart() {
 
 // Provider component
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
+    const [products, setProducts] = useState<Product[]>([])
+
+    useEffect(() => {
+        fetch("http://localhost:5135/api/products")
+            .then(res => res.json())
+            .then(data => setProducts(data))
+            .catch(err => console.error("Failed to fetch products:", err))
+    }, [])
+
+
     // State to hold the cart items, persisted in localStorage
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping-cart", []);
     // State to control the visibility of the shopping cart
@@ -108,7 +126,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
                     openCart,
                     closeCart,
                     cartItems,
-                    cartQuantity
+                    cartQuantity,
+                    products
                 }}>
             {children}
             <ShoppingCart isOpen = {isOpen}/>
